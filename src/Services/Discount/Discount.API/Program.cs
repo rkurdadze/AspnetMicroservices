@@ -1,4 +1,5 @@
 ﻿using Discount.API.Repositories;
+using Discount.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+HostExtensions.MigrateDatabase<Program>(app, 0);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
